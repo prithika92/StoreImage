@@ -1,0 +1,35 @@
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "image80-store",
+    "namespace": "default",
+    "selfLink": "/api/v1/namespaces/default/services/image80-store",
+    "uid": "d038a4ac-e645-11e8-b7f8-080027a71830",
+    "resourceVersion": "272915",
+    "creationTimestamp": "2018-11-12T06:40:15Z",
+    "labels": {
+      "run": "image80-store"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 80,
+        "targetPort": 80,
+        "nodePort": 31385
+      }
+    ],
+    "selector": {
+      "run": "image80-store"
+    },
+    "clusterIP": "10.105.8.70",
+    "type": "NodePort",
+    "sessionAffinity": "None",
+    "externalTrafficPolicy": "Cluster"
+  },
+  "status": {
+    "loadBalancer": {}
+  }
+}

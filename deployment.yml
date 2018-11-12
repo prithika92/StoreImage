@@ -1,0 +1,92 @@
+{
+  "kind": "Deployment",
+  "apiVersion": "extensions/v1beta1",
+  "metadata": {
+    "name": "image80-store",
+    "namespace": "default",
+    "selfLink": "/apis/extensions/v1beta1/namespaces/default/deployments/image80-store",
+    "uid": "ca520f0d-e645-11e8-b7f8-080027a71830",
+    "resourceVersion": "272905",
+    "generation": 1,
+    "creationTimestamp": "2018-11-12T06:40:05Z",
+    "labels": {
+      "run": "image80-store"
+    },
+    "annotations": {
+      "deployment.kubernetes.io/revision": "1"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "run": "image80-store"
+      }
+    },
+    "template": {
+      "metadata": {
+        "creationTimestamp": null,
+        "labels": {
+          "run": "image80-store"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "image80-store",
+            "image": "app80:v80",
+            "ports": [
+              {
+                "containerPort": 80,
+                "protocol": "TCP"
+              }
+            ],
+            "resources": {},
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "imagePullPolicy": "IfNotPresent"
+          }
+        ],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "securityContext": {},
+        "schedulerName": "default-scheduler"
+      }
+    },
+    "strategy": {
+      "type": "RollingUpdate",
+      "rollingUpdate": {
+        "maxUnavailable": 1,
+        "maxSurge": 1
+      }
+    },
+    "revisionHistoryLimit": 10,
+    "progressDeadlineSeconds": 600
+  },
+  "status": {
+    "observedGeneration": 1,
+    "replicas": 1,
+    "updatedReplicas": 1,
+    "readyReplicas": 1,
+    "availableReplicas": 1,
+    "conditions": [
+      {
+        "type": "Available",
+        "status": "True",
+        "lastUpdateTime": "2018-11-12T06:40:05Z",
+        "lastTransitionTime": "2018-11-12T06:40:05Z",
+        "reason": "MinimumReplicasAvailable",
+        "message": "Deployment has minimum availability."
+      },
+      {
+        "type": "Progressing",
+        "status": "True",
+        "lastUpdateTime": "2018-11-12T06:40:07Z",
+        "lastTransitionTime": "2018-11-12T06:40:05Z",
+        "reason": "NewReplicaSetAvailable",
+        "message": "ReplicaSet \"image80-store-74b6db4cfc\" has successfully progressed."
+      }
+    ]
+  }
+}
